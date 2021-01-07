@@ -2,56 +2,28 @@ package Greedy11501;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main {		
 	public static void main(String[] args) {
-		Scanner scan=new Scanner(System.in);
-		int n=scan.nextInt();
-		int max=0;
-		int cnt=0;
-		for(int i=0; i<n; i++) {
-			int count=0;
-			int m=scan.nextInt();
-			int []arr=new int[m];
-		
-			for(int j=0; j<m; j++) {
-				arr[j]=scan.nextInt();
+		Scanner sc = new Scanner(System.in);
+		int testcase = sc.nextInt();
+		long ans[] = new long[testcase];
+		for( int n = 0 ; n < testcase ; n++ ) {
+			int days = sc.nextInt();
+			long stocks[] = new long[days];
+			long max = 0;
+			for( int i = 0 ; i < days ; i++ ) {
+				stocks[i] = sc.nextInt();
 			}
-			max=arr[0];
-			for(int j=1; j<arr.length; j++) {
-				if(max<=arr[j]) {
-					max=arr[j];
-				}else if(max>arr[j]){
-					if(max==arr[m-1]) {
-						for(int k=0; k<j-1; k++) {
-							count+=arr[j-1]-arr[k];
-						}
-						
-					}else {
-						if(max!=arr[0]) {
-							for(int k=0; k<j-1; k++) {
-								count+=arr[j-1]-arr[k];
-							}
-							max=arr[j];
-							cnt=j;
-						}
-					}
+			for( int i = days-1 ; i >= 0 ; i-- ) {
+				if(stocks[i] > max) {
+					max = stocks[i];
+				}else {
+					ans[n] += (max - stocks[i]);
 				}
-				if(j==arr.length-1&&max==arr[j]) {
-					if(cnt==0) {
-						for(int k=0; k<j; k++) {
-							count+=arr[j]-arr[k];
-						}	
-					}else {
-						for(int k=cnt; k<j; k++) {
-							count+=arr[j]-arr[k];
-						}
-					}
-				}
-			}
-			System.out.println();
-			System.out.println(count);
-			
-		
+			}		
+		}
+		for( long i : ans) {
+			System.out.println(i);
 		}
 	}
 }
