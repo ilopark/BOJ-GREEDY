@@ -41,7 +41,10 @@ public class Main {
 				max-=start[i][0];
 			}
 		}
-		System.out.println(max);
+		if(max>=0)
+			System.out.println(max);
+		else
+			System.out.println(-1);
 	}
 }
 
