@@ -1,3 +1,5 @@
+package Greedy4055;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -35,7 +37,11 @@ public class Main {
 			time=party[0][0];
 			endtime=party[0][1];
 			for(int i=0; i<n; i++) {
-				if(endtime<=party[i][1]) {
+				if(time>=24) {
+					System.out.println(count);
+					break;
+				}
+				if(endtime<=party[i][1]&& party[i][1]<=24 && party[i][0]>=8) {
 					endtime=party[i][1];
 					if(endtime<=party[i][1]&& time<party[i][1]) {
 						count++;
@@ -50,8 +56,10 @@ public class Main {
 				
 				}
 			}
-			System.out.println("On day "+a+" Emma can attend as many as "+count+" parties.");
-			a++;
+			if(time<=24) {
+				System.out.println("On day "+a+" Emma can attend as many as "+count+" parties.");
+				a++;
+			}
 		}
 	}
 }
